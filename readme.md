@@ -5,6 +5,6 @@
   vim, apt, git
 
 # Usage
-  install into /etc/vim and runs as system vim
+  set plugins and install location thru attributes.
 
 Author::  (<mauricio.silva@gmail.com>)
