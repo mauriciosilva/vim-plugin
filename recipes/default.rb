@@ -7,11 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apt"
-include_recipe "git"
-include_recipe "vim"
-
-VimConfig::set_config node
+%w[apt git vim].each { |cook| include_recipe cook }
 
 directory "#{node["vim-plugin"]["install_dir"]}/bundle" do
   owner 'root'
@@ -35,7 +31,6 @@ node["vim-plugin"]["plugins"].each do |plugin|
     reference "master"
   end
 end
-
 
 ## load vimrc into local
 cookbook_file "#{node["vim-plugin"]["install_dir"]}/vimrc.local" do 
