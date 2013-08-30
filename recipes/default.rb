@@ -7,35 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w[apt git vim].each { |cook| include_recipe cook }
 
-directory "#{node["vim-plugin"]["install_dir"]}/bundle" do
-  owner 'root'
-  group 'root'
-  mode "0755"
-  action :create
-end
+include_recipe "vim::base"
+include_recipe "vim::plugins"
 
-## install pathogen
-git ::File.join(node["vim-plugin"]["install_dir"], "/bundle/vim-pathogen") do
-  repository "git://github.com/tpope/vim-pathogen.git"
-  reference "master"
-end
 
-## install plugins
-node["vim-plugin"]["plugins"].each do |plugin|
-  plugin_name = plugin.split("/").last.gsub("\.git", "")
-  Chef::Log.info "adding #{plugin_name} from #{plugin}"
-  git ::File.join(node["vim-plugin"]["install_dir"], "/bundle/#{plugin_name}") do
-    repository plugin
-    reference "master"
-  end
-end
-
-## load vimrc into local
-cookbook_file "#{node["vim-plugin"]["install_dir"]}/vimrc.local" do 
-  owner 'root'
-  group 'root'
-  mode "0644"
-end
-  

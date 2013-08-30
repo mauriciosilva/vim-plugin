@@ -3,6 +3,3 @@ site :opscode
 
 metadata
 
-group :vendors do 
-  cookbook 'vim'
-end

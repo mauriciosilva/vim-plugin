@@ -1,4 +1,4 @@
-name             "vim-plugin"
+name             "vim"
 maintainer_email "msilva@gmail.com.com"
 license          "All rights reserved"
 description      "Installs/Configures vim-plugins on top of vim cookbook install"
@@ -10,7 +10,7 @@ supports        "ubuntu", ">= 10.0.4"
 
 %w(
   apt
+  build-essential
   git
-  vim
 ).each { |cookbook_name| depends cookbook_name }
 

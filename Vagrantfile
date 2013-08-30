@@ -18,7 +18,8 @@ Vagrant.configure("2") do |config|
     chef.json = { }
 
     chef.run_list = [
-        "recipe[vim-plugin::default]"
+      "recipe[vim::base]",
+      "recipe[vim::plugins]"
     ]
   end
 end
